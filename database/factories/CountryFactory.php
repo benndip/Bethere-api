@@ -17,7 +17,9 @@ class CountryFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->country(),
+            'lng' => $this->faker->longitude(),
+            'lat' => $this->faker->latitude()
         ];
     }
 }

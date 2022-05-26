@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Placetype;
+use App\Models\Town;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,8 @@ class PlacetypeTownFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'placetype_id' => Placetype::factory(),
+            'town_id' => Town::factory()
         ];
     }
 }

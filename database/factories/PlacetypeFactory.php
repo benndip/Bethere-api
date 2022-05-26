@@ -17,7 +17,8 @@ class PlacetypeFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'icon' => $this->faker->imageUrl()
         ];
     }
 }
