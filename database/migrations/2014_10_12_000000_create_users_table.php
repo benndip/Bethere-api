@@ -22,7 +22,6 @@ return new class extends Migration
             $table->char('gender',1);
             $table->string('country_of_origin');
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });

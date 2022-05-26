@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Place;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,10 @@ class ReviewFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'rating' => $this->faker->numberBetween(1,5),
+            'description' => $this->faker->text(),
+            'user_id' => User::factory(),
+            'place_id' => Place::factory()
         ];
     }
 }

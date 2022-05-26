@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Town;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,10 @@ class SpecialeventFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'town_id' => Town::factory(),
+            'date' => $this->faker->date(),
+            'details' => $this->faker->sentence(15)
         ];
     }
 }

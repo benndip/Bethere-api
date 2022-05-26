@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Region;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,10 @@ class TownFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'lng' => $this->faker->longitude(),
+            'lat' => $this->faker->latitude(),
+            'region_id' => Region::factory()
         ];
     }
 }

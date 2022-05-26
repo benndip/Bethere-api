@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('specialevents', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->unsignedBigInteger('town_id');
+            $table->foreign('town_id')->references('id')->on('towns');
             $table->timestamps();
         });
     }
