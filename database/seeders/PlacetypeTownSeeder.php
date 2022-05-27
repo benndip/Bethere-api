@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\PlacetypeTown;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +15,6 @@ class PlacetypeTownSeeder extends Seeder
      */
     public function run()
     {
-        //
+        PlacetypeTown::factory(5)->create();
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Town;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +15,6 @@ class TownSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Town::factory(5)->create();
     }
 }

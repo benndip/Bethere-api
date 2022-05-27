@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->float('rating');
-            $table->string('description');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('place_id');
+            $table->float('rating');
+            $table->string('description');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('place_id')->references('id')->on('places')->onDelete('cascade');
             $table->timestamps();
         });
     }

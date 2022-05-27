@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('places', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('town_id');
             $table->string('name');
             $table->float('lng');
             $table->float('lat');
-            $table->unsignedBigInteger('town_id');
             $table->foreign('town_id')->references('id')->on('towns')->onDelete('cascade');
             $table->timestamps();
         });
