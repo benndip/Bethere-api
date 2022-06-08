@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Place;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,9 @@ class PlaceImageFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'url' => $this->faker->imageUrl(),
+            'place_id' => Place::factory()
         ];
     }
 }
