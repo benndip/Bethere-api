@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\PlaceImage;
 use App\Models\PlacetypeTown;
 use App\Models\Specialevent;
 use Database\Factories\NewsFactory;
@@ -23,6 +24,7 @@ class DatabaseSeeder extends Seeder
             TownSeeder::class,
             AgentSeeder::class,
             PlaceSeeder::class,
+            PlaceImageSeeder::class,
             PlacetypeSeeder::class,
             ReviewSeeder::class,
             RoleSeeder::class,

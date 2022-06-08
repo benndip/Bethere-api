@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\PlaceImage;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +15,6 @@ class PlaceImageSeeder extends Seeder
      */
     public function run()
     {
-        //
+        PlaceImage::factory(5)->create();
     }
 }
