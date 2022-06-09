@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\AuthController;
+namespace App\Http\Controllers;
+
+use App\Models\Placetype;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,3 +34,9 @@ Route::group([
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::post('me', [AuthController::class, 'me']);
 });
+
+// Places
+Route::get('places', [PlaceController::class, 'index']);
+
+// placetypes
+Route::get('place-types',[PlacetypeController::class, 'index']);

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('town_id');
             $table->string('name');
+            $table->string('about');
             $table->float('lng');
             $table->float('lat');
             $table->foreign('town_id')->references('id')->on('towns')->onDelete('cascade');

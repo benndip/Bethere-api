@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePlacetypeRequest;
-use App\Http\Requests\UpdatePlacetypeRequest;
+use Illuminate\Http\Request;
 use App\Models\Placetype;
 
 class PlacetypeController extends Controller
@@ -15,7 +14,11 @@ class PlacetypeController extends Controller
      */
     public function index()
     {
-        //
+        $placeTypes = Placetype::all();
+        return response()->json([
+            'success' => true,
+            'placeTypes' => $placeTypes
+        ], 200);
     }
 
     /**
@@ -31,10 +34,9 @@ class PlacetypeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StorePlacetypeRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePlacetypeRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -64,11 +66,10 @@ class PlacetypeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatePlacetypeRequest  $request
      * @param  \App\Models\Placetype  $placetype
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePlacetypeRequest $request, Placetype $placetype)
+    public function update(Request $request, Placetype $placetype)
     {
         //
     }

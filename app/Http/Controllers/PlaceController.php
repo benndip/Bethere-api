@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePlaceRequest;
-use App\Http\Requests\UpdatePlaceRequest;
+use Illuminate\Http\Request;
 use App\Models\Place;
 
 class PlaceController extends Controller
@@ -15,7 +14,11 @@ class PlaceController extends Controller
      */
     public function index()
     {
-        //
+        $places = Place::with(['placeImages'])->get();
+        return response()->json([
+            'status' => true,
+            'places' => $places
+        ], 200);
     }
 
     /**
@@ -31,10 +34,9 @@ class PlaceController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StorePlaceRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePlaceRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -64,11 +66,10 @@ class PlaceController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatePlaceRequest  $request
      * @param  \App\Models\Place  $place
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePlaceRequest $request, Place $place)
+    public function update(Request $request, Place $place)
     {
         //
     }
