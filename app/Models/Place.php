@@ -28,4 +28,9 @@ class Place extends Model
     {
         return $this->hasMany(Review::class);
     }
+
+    public function placeImages()
+    {
+        return $this->hasMany(PlaceImage::class);
+    }
 }
