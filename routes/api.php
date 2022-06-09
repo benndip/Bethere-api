@@ -40,3 +40,6 @@ Route::get('places', [PlaceController::class, 'index']);
 
 // placetypes
 Route::get('place-types',[PlacetypeController::class, 'index']);
+
+// Review
+Route::post('review', [ReviewController::class, 'store']);

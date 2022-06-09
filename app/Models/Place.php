@@ -24,7 +24,7 @@ class Place extends Model
         return $this->belongsToMany(User::class);
     }
 
-    public function reveiws()
+    public function reviews()
     {
         return $this->hasMany(Review::class);
     }

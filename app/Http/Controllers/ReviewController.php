@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreReviewRequest;
-use App\Http\Requests\UpdateReviewRequest;
+use Illuminate\Http\Request;
 use App\Models\Review;
 
 class ReviewController extends Controller
 {
+
+    protected $user;
+
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+        $this->user = auth()->user();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,24 +26,29 @@ class ReviewController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreReviewRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreReviewRequest $request)
+    public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'rating' => ['required', 'integer', 'max:5', 'min:1'],
+            'description' => ['string'],
+            'place_id' => ['required','integer','exists:places,id'],
+        ]);
+
+        $review = Review::create([
+            'user_id' => $this->user->id,
+            'place_id' => $request->place_id,
+            'rating' => $request->rating,
+            'description' => $request->description
+        ]);
+
+        return response()->json([
+            'status' => true,
+            'review' => $review
+        ], 200);
     }
 
     /**
@@ -64,11 +76,10 @@ class ReviewController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateReviewRequest  $request
      * @param  \App\Models\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateReviewRequest $request, Review $review)
+    public function update(Request $request, Review $review)
     {
         //
     }
