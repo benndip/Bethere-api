@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Placetype;
+use App\Models\Place;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Placetype>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Pano>
  */
-class PlacetypeFactory extends Factory
+class PanoFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,7 +19,8 @@ class PlacetypeFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'icon' => $this->faker->imageUrl(),
+            'url' => $this->faker->imageUrl(),
+            'place_id' => Place::factory()
         ];
     }
 }

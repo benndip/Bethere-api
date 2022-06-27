@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Placetype;
+use App\Models\Place;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Placetype>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Threed>
  */
-class PlacetypeFactory extends Factory
+class ThreedFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,7 +19,9 @@ class PlacetypeFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'icon' => $this->faker->imageUrl(),
+            'url' => $this->faker->imageUrl(),
+            'description' => $this->faker->sentence(),
+            'place_id' => Place::factory()
         ];
     }
 }

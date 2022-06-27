@@ -16,11 +16,13 @@ return new class extends Migration
         Schema::create('places', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('town_id');
+            $table->unsignedBigInteger('placetype_id');
             $table->string('name');
             $table->string('about');
             $table->float('lng');
             $table->float('lat');
             $table->foreign('town_id')->references('id')->on('towns')->onDelete('cascade');
+            $table->foreign('placetype_id')->references('id')->on('placetypes')->onDelete('cascade');
             $table->timestamps();
         });
     }

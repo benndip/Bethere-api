@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Place extends Model
 {
+
     use HasFactory;
+
+    protected $fillable = ['name', 'about', 'placetype_id', 'town_id', 'lat', 'lng'];
 
     public function town()
     {
@@ -32,5 +35,20 @@ class Place extends Model
     public function placeImages()
     {
         return $this->hasMany(PlaceImage::class);
+    }
+
+    public function placeType()
+    {
+        return $this->belongsTo(PlaceType::class);
+    }
+
+    public function pano()
+    {
+        return $this->hasOne(Pano::class);
+    }
+
+    public function threeds()
+    {
+        return $this->hasMany(Threed::class);
     }
 }

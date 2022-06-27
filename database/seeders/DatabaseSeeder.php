@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\PlaceImage;
 use App\Models\PlacetypeTown;
 use App\Models\Specialevent;
+use App\Models\Threed;
 use Database\Factories\NewsFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -31,7 +32,9 @@ class DatabaseSeeder extends Seeder
             RoleUserSeeder::class,
             NewsSeeder::class,
             PlacetypeTownSeeder::class,
-            SpecialeventSeeder::class
+            SpecialeventSeeder::class,
+            PanoSeeder::class,
+            ThreedSeeder::class
         ]);
     }
 }

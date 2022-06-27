@@ -26,8 +26,8 @@ class AuthController extends Controller
     {
         $this->validate($request, [
             'name' => ['required', 'string', 'max:20', 'min:3'],
-            'phone' => ['required', 'unique:users,phone'],
-            'age' => ['required','integer'],
+            'phone' => ['required', 'unique:users,phone', 'min:9', 'string'],
+            'date_of_birth' => ['required', 'date'],
             'gender' => ['required'],
             'country' => ['required', 'string'],
             'password' => ['required', 'confirmed', 'string', 'min:6']
@@ -36,7 +36,7 @@ class AuthController extends Controller
         $createdUser = $this->user::create([
             'name' => $request->name,
             'phone' => $request->phone,
-            'age' => $request->age,
+            'date_of_birth' => date("Y-m-d", strtotime($request->date_of_birth)),
             'gender' => $request->gender,
             'country' => $request->country,
             'password' => Hash::make($request->password),

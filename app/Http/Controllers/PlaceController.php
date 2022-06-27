@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Place;
+use App\Models\PlaceImage;
 
 class PlaceController extends Controller
 {
+    protected $place;
+
+    public function __construct()
+    {
+        $this->place = new Place;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,21 +21,11 @@ class PlaceController extends Controller
      */
     public function index()
     {
-        $places = Place::with(['placeImages','reviews'])->get();
+        $places = Place::with(['placeImages', 'reviews'])->get();
         return response()->json([
             'status' => true,
             'places' => $places
         ], 200);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -38,7 +35,50 @@ class PlaceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => ['required', 'string', 'min:3', 'max:25', 'unique:places,name'],
+            'about' => ['required', 'string'],
+            'placetype_id' => ['required', 'integer', 'exists:placetypes,id'],
+            'town_id' => ['required', 'integer', 'exists:towns,id'],
+            'lat' => ['required', 'numeric'],
+            'lng' => ['required', 'numeric'],
+            'images' => ['required'],
+            'images.*' => ['image|mimes:jpeg,png,jpg,gif,svg|max:2048']
+        ]);
+
+        $createdPlace = $this->place->create([
+            "name" => $request->name,
+            "about" => $request->about,
+            "placetype_id" => $request->placetype_id,
+            "town_id" => $request->town_id,
+            "lat" => $request->lat,
+            "lng" => $request->lng
+        ]);
+
+        $images = $request->file(['images']);
+        $image_details = array();
+
+        if ($images) {
+
+            foreach ($images as $image) {
+                $name = $image->getClientOriginalName();
+                $path = $image->store('placeImages');
+                $image_details[] = new PlaceImage(
+                    [
+                        'name' => $name,
+                        'url' => asset('storage/' . $path)
+                    ]
+                );
+            }
+        }
+
+        $createdPlace->placeImages()->saveMany($image_details);
+        $createdPlace = $createdPlace->with('placeImages');
+
+        return response()->json([
+            'success' => true,
+            'place' => $createdPlace
+        ], 200);
     }
 
     /**

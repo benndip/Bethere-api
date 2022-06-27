@@ -13,4 +13,9 @@ class Placetype extends Model
     {
         return $this->belongsToMany(Town::class);
     }
+
+    public function places()
+    {
+        return $this->hasMany(Place::class);
+    }
 }

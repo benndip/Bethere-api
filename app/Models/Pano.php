@@ -5,14 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PlaceImage extends Model
+class Pano extends Model
 {
     use HasFactory;
-
-    protected $fillable = [
-        'name',
-        'url'
-    ];
 
     public function place()
     {

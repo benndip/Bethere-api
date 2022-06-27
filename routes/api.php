@@ -37,9 +37,10 @@ Route::group([
 
 // Places
 Route::get('places', [PlaceController::class, 'index']);
+Route::post('places', [PlaceController::class, 'store']);
 
 // placetypes
-Route::get('place-types',[PlacetypeController::class, 'index']);
+Route::get('place-types', [PlacetypeController::class, 'index']);
 
 // Review
 Route::post('review', [ReviewController::class, 'store']);
