@@ -21,7 +21,10 @@ class PlaceController extends Controller
      */
     public function index()
     {
-        $places = Place::with(['placeImages', 'reviews'])->get();
+        $places = Place::with(['placeImages', 'reviews'])
+            ->orderBy('id', 'DESC')
+            ->get();
+
         return response()->json([
             'status' => true,
             'places' => $places
@@ -62,18 +65,18 @@ class PlaceController extends Controller
 
             foreach ($images as $image) {
                 $name = $image->getClientOriginalName();
-                $path = $image->store('placeImages');
+                $path = $image->store('public/placeImages');
+                $exploded_string = explode("/", $path);
                 $image_details[] = new PlaceImage(
                     [
                         'name' => $name,
-                        'url' => asset('storage/' . $path)
+                        'url' => asset("storage/{$exploded_string[1]}/{$exploded_string[2]}")
                     ]
                 );
             }
         }
 
         $createdPlace->placeImages()->saveMany($image_details);
-        $createdPlace = $createdPlace->with('placeImages');
 
         return response()->json([
             'success' => true,

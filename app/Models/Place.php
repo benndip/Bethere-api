@@ -11,6 +11,7 @@ class Place extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'about', 'placetype_id', 'town_id', 'lat', 'lng'];
+    protected $with = ['placeImages'];
 
     public function town()
     {
