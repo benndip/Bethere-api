@@ -15,6 +15,52 @@ class PlacetypeSeeder extends Seeder
      */
     public function run()
     {
-        Placetype::factory(5)->create();
+        $placetypes = [
+            [
+                'name' => 'Hotels',
+                'icon' => asset('storage/placetypeImages/hotels.png')
+            ],
+            [
+                'name' => 'Museums',
+                'icon' => asset('storage/placetypeImages/museums.png')
+            ],
+            [
+                'name' => 'Beaches',
+                'icon' => asset('storage/placetypeImages/beaches.png')
+            ],
+            [
+                'name' => 'Airports',
+                'icon' => asset('storage/placetypeImages/airports.png')
+            ],
+            [
+                'name' => 'Naturals',
+                'icon' => asset('storage/placetypeImages/nature.png')
+            ],
+            [
+                'name' => 'Stadia',
+                'icon' => asset('storage/placetypeImages/hotels.png')
+            ],
+            [
+                'name' => 'Bus stations',
+                'icon' => asset('storage/placetypeImages/buses.png')
+            ],
+            [
+                'name' => 'Shops',
+                'icon' => asset('storage/placetypeImages/shops.png')
+            ],
+            [
+                'name' => 'Restaurants',
+                'icon' => asset('storage/placetypeImages/restaurants.png')
+            ],
+            [
+                'name' => 'Churches',
+                'icon' => asset('storage/placetypeImages/churches.png')
+            ]
+        ];
+
+        foreach ($placetypes as $placetype) {
+            $newPlacetype = new Placetype($placetype);
+            $newPlacetype->save();
+        }
     }
 }

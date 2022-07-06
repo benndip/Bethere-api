@@ -1,25 +1,4 @@
 <?php
 
-namespace Database\Factories;
-
-use App\Models\Placetype;
-use Illuminate\Database\Eloquent\Factories\Factory;
-
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Placetype>
- */
-class PlacetypeFactory extends Factory
-{
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition()
-    {
-        return [
-            'name' => $this->faker->name(),
-            'icon' => $this->faker->imageUrl(),
-        ];
-    }
-}
+// There's no code in this factory because we want to write a custom code for the seeding the placetypes table
+// Check the PlacetypeSeeder.php file for this code
