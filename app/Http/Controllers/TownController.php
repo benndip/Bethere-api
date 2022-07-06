@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreTownRequest;
-use App\Http\Requests\UpdateTownRequest;
 use App\Models\Town;
+use Illuminate\Http\Request;
 
 class TownController extends Controller
 {
@@ -15,18 +14,14 @@ class TownController extends Controller
      */
     public function index()
     {
-        //
+        $towns = Town::with(['region', 'specialenevts'])->get();
+
+        return response()->json([
+            'status' => true,
+            'towns' => $towns
+        ], 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -34,7 +29,7 @@ class TownController extends Controller
      * @param  \App\Http\Requests\StoreTownRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTownRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -50,25 +45,14 @@ class TownController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Town  $town
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Town $town)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateTownRequest  $request
      * @param  \App\Models\Town  $town
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTownRequest $request, Town $town)
+    public function update(Request $request, Town $town)
     {
         //
     }

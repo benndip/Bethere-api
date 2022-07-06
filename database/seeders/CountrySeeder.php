@@ -15,6 +15,17 @@ class CountrySeeder extends Seeder
      */
     public function run()
     {
-        Country::factory(5)->create();
+        $countries = [
+            [
+                'name' => 'Cameroon',
+                'lat' => 7.3697,
+                'lng' => 12.3547
+            ],
+        ];
+
+        foreach ($countries as $country) {
+            $newCountry = new Country($country);
+            $newCountry->save();
+        }
     }
 }

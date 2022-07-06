@@ -44,3 +44,6 @@ Route::get('place-types', [PlacetypeController::class, 'index']);
 
 // Review
 Route::post('review', [ReviewController::class, 'store']);
+
+// Town
+Route::get('towns', [TownController::class, 'index']);
