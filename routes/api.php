@@ -47,3 +47,6 @@ Route::post('review', [ReviewController::class, 'store']);
 
 // Town
 Route::get('towns', [TownController::class, 'index']);
+
+// payment
+Route::post('request-payment', [PaymentController::class, 'requestPayment']);

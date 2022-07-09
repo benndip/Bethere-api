@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('age');
-            $table->enum('gender',['M','F']);
+            $table->enum('gender', ['M', 'F']);
             $table->string('phone')->unique();
             $table->string('country');
+            $table->integer('coins')->default(0);
             $table->date('date_of_birth')->nullable();
             $table->string('password');
             $table->string('email')->unique()->nullable();
