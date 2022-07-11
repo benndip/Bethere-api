@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->integer('external_reference');
             $table->double('amount');
-            $table->enum('status', ['SUCCESS', 'PENDING', 'FAILED']);
+            $table->enum('status', ['SUCCESSFUL', 'PENDING', 'FAILED']);
             $table->enum('operator', ['MTN', 'ORANGE']);
             $table->string('currency');
             $table->string('description');

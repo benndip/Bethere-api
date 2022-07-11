@@ -68,7 +68,7 @@ class PaymentController extends Controller
         curl_setopt($curl, CURLOPT_POSTFIELDS,  json_encode($data));
         curl_setopt($curl, CURLOPT_HTTPHEADER, [
             'Content-Type: application/json',
-            "Authorization: Token ${token} "
+            "Authorization: Token ${token}"
         ]);
         $response = curl_exec($curl);
         curl_close($curl);
