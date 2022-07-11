@@ -19,7 +19,7 @@ class SpecialeventFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'town_id' => Town::factory(),
+            'town_id' => $this->faker->randomElement([1, 2, 3]),
             'date' => $this->faker->date(),
             'details' => $this->faker->sentence(15)
         ];

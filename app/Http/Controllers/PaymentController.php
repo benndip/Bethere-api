@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
 
     public function getNewToken()
     {
@@ -53,7 +58,7 @@ class PaymentController extends Controller
             "amount" => $request->amount,
             "from" => $request->from,
             "description" => $request->description,
-            "external_reference" => $request->external_reference,
+            "external_reference" => auth()->user()->id,
             "currency" => "XAF"
         ];
 
@@ -68,8 +73,23 @@ class PaymentController extends Controller
         $response = curl_exec($curl);
         curl_close($curl);
 
+        $json_response = json_decode($response);
+
+        // Other than doing this, you have to get the details of a transaction by getting making GET request to /transaction/(reference)/.
+        $transaction = new Transaction();
+        $transaction->user_id = auth()->user()->id;
+        $transaction->amount = $request->amount;
+        $transaction->status = 'PENDING';
+        $transaction->operator = $json_response->operator;
+        $transaction->reference = $json_response->reference;
+        $transaction->phone = $request->from;
+        $transaction->description = $request->description;
+        $transaction->external_reference = auth()->user()->id;
+        $transaction->currency = "XAF";
+        $transaction->save();
+
         return response()->json([
-            'response' => $response
+            'response' => $transaction
         ], 200);
     }
 }

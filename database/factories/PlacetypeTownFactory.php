@@ -19,8 +19,8 @@ class PlacetypeTownFactory extends Factory
     public function definition()
     {
         return [
-            'placetype_id' => Placetype::factory(),
-            'town_id' => Town::factory()
+            'placetype_id' => $this->faker->randomElement([1, 2, 3]),
+            'town_id' => $this->faker->randomElement([1, 2, 3])
         ];
     }
 }

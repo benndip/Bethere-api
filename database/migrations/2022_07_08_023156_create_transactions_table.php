@@ -15,11 +15,16 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->double('old_balance');
-            $table->double('new_balance');
+            $table->unsignedBigInteger('user_id');
+            $table->integer('external_reference');
+            $table->double('amount');
             $table->enum('status', ['SUCCESS', 'PENDING', 'FAILED']);
-            $table->enum('operatur', ['MTN', 'ORANGE']);
-            $table->string('reference_id')->unique();
+            $table->enum('operator', ['MTN', 'ORANGE']);
+            $table->string('currency');
+            $table->string('description');
+            $table->string('reference')->unique();
+            $table->string('phone');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

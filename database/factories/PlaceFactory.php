@@ -23,8 +23,8 @@ class PlaceFactory extends Factory
             'about' => $this->faker->text(),
             'lng' => $this->faker->longitude(),
             'lat' => $this->faker->latitude(),
-            'town_id' => Town::factory(),
-            'placetype_id' => Placetype::factory()
+            'town_id' => $this->faker->randomElement([1, 2, 3]),
+            'placetype_id' => $this->faker->randomElement([1, 2, 3])
         ];
     }
 }

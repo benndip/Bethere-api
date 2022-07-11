@@ -24,15 +24,15 @@ class DatabaseSeeder extends Seeder
             RegionSeeder::class,
             TownSeeder::class,
             AgentSeeder::class,
-            PlaceSeeder::class,
-            PlaceImageSeeder::class,
             PlacetypeSeeder::class,
             ReviewSeeder::class,
             RoleSeeder::class,
             RoleUserSeeder::class,
             NewsSeeder::class,
-            PlacetypeTownSeeder::class,
+            PlaceSeeder::class,
             SpecialeventSeeder::class,
+            PlaceImageSeeder::class,
+            PlacetypeTownSeeder::class,
             PanoSeeder::class,
             ThreedSeeder::class
         ]);
