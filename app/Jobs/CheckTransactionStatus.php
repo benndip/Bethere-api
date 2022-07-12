@@ -73,12 +73,10 @@ class CheckTransactionStatus implements ShouldQueue
 
         $json_transaction = json_decode($result);
 
-        Log::info('Look here', array('reference' => $this->transaction->reference));
-        Log::info('Look here', array('context' => $json_transaction->status));
 
         if ($json_transaction->status == 'SUCCESSFUL') {
             $transaction = Transaction::where('reference', $this->transaction->reference)->first();
-            $transaction->status = 'SUCCESS';
+            $transaction->status = 'SUCCESSFUL';
             $transaction->save();
 
             $user = User::where('id', $transaction->user_id)->first();
